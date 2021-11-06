@@ -73,9 +73,9 @@ fun Greetings(names: List<String> = List(1000) { "$it" }) {
 
 @Composable
 fun Greeting(name: String) {
-    val expanded = remember { mutableStateOf(false) }
+    var expanded by remember { mutableStateOf(false) }
     val extraPadding by animateDpAsState(
-        targetValue = if (expanded.value) 48.dp else 0.dp,
+        targetValue = if (expanded) 48.dp else 0.dp,
         animationSpec = spring(
             dampingRatio = Spring.DampingRatioMediumBouncy,
             stiffness = Spring.StiffnessLow
@@ -100,17 +100,17 @@ fun Greeting(name: String) {
                         fontWeight = FontWeight.ExtraBold
                     )
                 )
-                if (expanded.value) {
+                if (expanded) {
                     Text(
                         text = ("Composem ipsum color sit lazy, " +
                                 "padding theme elit, sed do bouncy. ").repeat(4),
                     )
                 }
             }
-            IconButton(onClick = { expanded.value = !expanded.value }) {
+            IconButton(onClick = { expanded = !expanded }) {
                 Icon(
-                    imageVector = if (expanded.value) Icons.Filled.ExpandLess else Icons.Filled.ExpandMore,
-                    contentDescription = if (expanded.value) {
+                    imageVector = if (expanded) Icons.Filled.ExpandLess else Icons.Filled.ExpandMore,
+                    contentDescription = if (expanded) {
                         stringResource(id = R.string.show_less)
                     } else {
                         stringResource(id = R.string.show_more)
