@@ -67,7 +67,7 @@ fun TodoScreen(
                         .fillMaxWidth()
                 )
             }
-            TodoItemEntryInput(onItemComplete = onAddItem)
+//            TodoItemEntryInput(onItemComplete = onAddItem)
         }
         LazyColumn(
             modifier = Modifier.weight(1f),
@@ -84,7 +84,7 @@ fun TodoScreen(
                 } else {
                     TodoRow(
                         todo = todo,
-                        onItemClicked = { onRemoveItem(it) },
+                        onItemClicked = { onStartEdit(it) },
                         modifier = Modifier.fillParentMaxWidth()
                     )
                 }
@@ -155,7 +155,7 @@ fun TodoItemEntryInput(onItemComplete: (TodoItem) -> Unit) {
         submit = submit,
         iconVisible = text.isNotBlank()
     ) {
-        TodoEditButton(onClick = submit, text = "Add",enabled = text.isNotBlank())
+//        TodoEditButton(onClick = submit, text = "Add",enabled = text.isNotBlank())
     }
 }
 
